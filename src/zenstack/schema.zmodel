@@ -1,0 +1,24 @@
+datasource db {
+    provider = 'sqlite'
+    url = 'file:../../dev.db'
+}
+
+plugin policy {
+    provider = "@zenstackhq/plugin-policy"
+}
+
+type User {
+    admin Boolean
+}
+
+model Post {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    title     String   @length(1, 256)
+    content   String
+    published Boolean  @default(false)
+
+    @@allow('read', published)
+    @@allow('all', auth().admin)
+}
