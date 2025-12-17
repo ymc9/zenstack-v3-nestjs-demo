@@ -5,6 +5,7 @@ import { DbService } from './db.service';
 import { isAdmin } from './utils';
 import { schema } from './zenstack/schema';
 
+// This controller uses ZenStack API handler to automatically provide REST API with access control
 @Controller('api-auto')
 export class AppAutoController {
   private readonly apiHandler = new RestApiHandler({
@@ -24,8 +25,6 @@ export class AppAutoController {
     // simulate authentication
     const admin = isAdmin(req);
     const authDb = this.dbService.$setAuth({ admin });
-
-    console.log('Handling request:', req.method, path, JSON.stringify(query));
 
     const result = await this.apiHandler.handleRequest({
       method: req.method,

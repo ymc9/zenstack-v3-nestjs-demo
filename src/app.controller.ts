@@ -1,6 +1,7 @@
 import { Controller, Get, Post } from '@nestjs/common';
 import { DbService } from './db.service';
 
+// This controller is not access-controlled
 @Controller('api')
 export class AppController {
   constructor(private readonly dbService: DbService) {}

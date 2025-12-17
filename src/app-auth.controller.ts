@@ -1,6 +1,7 @@
 import { Controller, Get, Inject, Post } from '@nestjs/common';
 import { DbService } from './db.service';
 
+// This controller uses an access-controlled DbService
 @Controller('api-auth')
 export class AppAuthController {
   constructor(@Inject('AUTH_DB') private readonly dbService: DbService) {}
