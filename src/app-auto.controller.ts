@@ -25,7 +25,7 @@ export class AppAutoController {
   @All('/*path')
   async handleAll(
     @Req() req: Request,
-    @Res() response: Response,
+    @Res() res: Response,
     @Param('path') path: string[],
     @Query() query: Record<string, any>,
   ) {
@@ -37,6 +37,6 @@ export class AppAutoController {
       client: this.dbService,
     });
 
-    response.status(result.status).json(result.body);
+    res.status(result.status).json(result.body);
   }
 }
