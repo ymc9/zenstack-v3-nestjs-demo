@@ -6,7 +6,7 @@ import { DbService } from './db.service';
 export class AppController {
   constructor(private readonly dbService: DbService) {}
 
-  @Get()
+  @Get('/posts')
   getPosts() {
     return this.dbService.post.findMany();
   }
